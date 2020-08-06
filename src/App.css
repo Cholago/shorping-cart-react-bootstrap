@@ -7,15 +7,6 @@
   --input-color-focused: #03A9F4;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    background-image: url('http://localhost/mdko/assets/img/lock.jpg'); 
-    background-size: cover; 
-    background-position: top center;
-}
-
-
 .login-page-box{
     width: 320px;
     height: 390px;

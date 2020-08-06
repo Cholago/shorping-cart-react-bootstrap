@@ -1,7 +1,9 @@
 import React from 'react';
 import logo from './assets/logo.png'
+import Background from './assets/lock.jpg'
 
 function About() {
+
     return (
         <div className="login-page-box">
             <img src={logo} className="logo" />
