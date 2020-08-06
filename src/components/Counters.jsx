@@ -4,56 +4,34 @@ import Counter from './Counter'
 //rendering all counters from Counter components
 class Counters extends React.Component {
     //set counter id and value
-    state = {
-        counters: [
-            { id: 1, value: 4 },
-            { id: 2, value: 0 },
-            { id: 3, value: 0 },
-            { id: 4, value: 0 },
-            { id: 5, value: 0 },
-            { id: 6, value: 0 }
-        ]
-    }
 
-    handleDelete = (counterId) => {
-        console.log('Event handle clicked ' + counterId)
-        const counters = this.state.counters.filter(c => c.id !== counterId);
-        this.setState({ counters });
-    }
-
-    handleIncrement = counter => {
-        console.log(counter);
-        const counters = [...this.state.counters];
-        const index = counters.indexOf(counter);
-        counters[index] = { ...counter };
-        counters[index].value++;
-        this.setState({ counters });
-    }
-
-    handleReset = () => {
-        const counters = this.state.counters.map(c => {
-            c.value = 0;
-            return c;
-        });
-        this.setState({ counters });
-    }
 
     render() {
         //persing props to a components
         //with props child id  <h>Count {counter.id}</h>
         //child prop is very useful when youre passing complex elememnt like dialogbox
         return (
-            <div>
-                <button className="btn btn-primary btn-sm m-3" onClick={this.handleReset}>Reset</button>
-                {this.state.counters.map(counter => (
-                    <Counter
-                        key={counter.id}
-                        counter={counter}
-                        onDelete={this.handleDelete}
-                        onIncrement={this.handleIncrement}>
-                        <h4> Count {counter.id} </h4>
-                    </Counter>
-                ))}
+            <div className="card m-3" style={{ width: "20rem" }}>
+                <div className="card-header">
+                    <button
+                        className="btn btn-primary btn-sm m-3"
+                        onClick={this.props.onReset}>
+                        Reset
+                    </button>
+                </div>
+                <ul className="list-group list-group-flush">
+                    {this.props.counters.map(counter => (
+                        <li className="list-group-item">
+                            <Counter
+                                key={counter.id}
+                                counter={counter}
+                                onDelete={this.props.onDelete}
+                                onIncrement={this.props.onIncrement}>
+                                <h4 className="text-center">Item {counter.id} </h4>
+                            </Counter>
+                        </li>
+                    ))}
+                </ul>
             </div>
         );
     }
