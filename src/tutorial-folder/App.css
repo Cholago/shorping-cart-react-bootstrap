@@ -1,0 +1,97 @@
+:root {
+  --primary-color: #03A9F4;
+  --text-color: #5c5a5a;
+  --box-background-color: #fff;
+  --white-color: #fff;
+  --input-color-not-focused: #c9c7c7;
+  --input-color-focused: #03A9F4;
+}
+
+.login-page-box{
+    width: 320px;
+    height: 390px;
+    background: var(--box-background-color); 
+    color: var(--text-color); 
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 60px  10px;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+    background: var(--box-background-color); 
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+.login-page-box h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.login-page-box p{
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);;
+}
+
+.login-page-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login-page-box input[type ="text"], input[type ="password"]{
+    border: none;
+    border-bottom: 1px solid var(--input-color-not-focused);
+    outline: none;
+    height: 40px;
+}
+
+.login-page-box input[type ="text"]:focus{
+    border-bottom: 1px solid var(--input-color-focused);
+}
+
+.login-page-box input[type ="password"]:focus{
+    border-bottom: 1px solid var(--input-color-focused);
+}
+
+.login-page-box input[type ="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.login-page-box input[type ="submit"]:hover{
+    border: 1px solid var(--primary-color);
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    background: #fff;
+    color: var(--primary-color);
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.login-page-box a{
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-color);
+}
+
+.login-page-box a:hover{
+    color: var(--primary-color);
+}
