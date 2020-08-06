@@ -1,7 +1,7 @@
 import React from 'react';
 
 //list items with react js tutorial
-class Counter extends React.Component {
+class Listing extends React.Component {
     state = {
         count: 1,
         shoppingCart:
@@ -52,4 +52,4 @@ class Counter extends React.Component {
     }
 }
 
-export default Counter;
+export default Listing;
