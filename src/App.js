@@ -47,24 +47,30 @@ class App extends React.Component {
 
   //adding an item to the list
   handleAdd = (itemData) => {
-    if (itemData.itemName.length < 2 || itemData.itemName.length < 1) {
+    if (itemData.itemName.length < 2) {
       Swal.fire(
         'Error!',
-        'Item name or Item id is empty',
+        'Item name is required',
         'warning'
       )
 
     }
+    else if (itemData.itemId.length < 1) {
+      Swal.fire(
+        'Error!',
+        'Item id is required',
+        'warning'
+      )
+    }
     else {
       this.setState(state => {
-        const counters = state.counters.concat({ id: itemData.itemID, itemName: itemData.itemName, value: 0 });
+        const counters = state.counters.concat({ id: itemData.itemId, itemName: itemData.itemName, value: 0 });
         return {
           counters
         };
       });
 
     }
-
     console.log(itemData);
 
   }

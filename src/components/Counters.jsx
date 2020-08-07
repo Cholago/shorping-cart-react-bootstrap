@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from './Counter'
+import Swal from 'sweetalert2'
 
 //rendering all counters from Counter components
 class Counters extends React.Component {
@@ -8,10 +9,6 @@ class Counters extends React.Component {
     state = {
         itemName: '',
         itemId: '',
-        itemNameError: false,
-        itemIdError: false,
-        itemNameMessage: '',
-        itemIdMessage: ''
 
     };
 
@@ -20,24 +17,9 @@ class Counters extends React.Component {
         switch (name) {
             case 'itemName':
                 this.setState({ itemName: value, });
-                if (value == "") {
-                    this.setState({ itemNameMessage: "Item name is required", itemNameError: true });
-                }
-                else if (value.length < 2) {
-                    this.setState({ itemNameMessage: "Item name least 2 characters long", itemNameError: true });
-                }
-                else {
-                    this.setState({ itemNameMessage: false, itemNameError: false });
-                }
                 break;
             case 'itemId':
                 this.setState({ itemId: value });
-                if (value == "") {
-                    this.setState({ itemIdMessage: "Item id is required.", itemIdError: true });
-                }
-                else {
-                    this.setState({ itemIdMessage: false, itemIdError: false });
-                }
                 break;
             default:
                 break;
@@ -46,24 +28,28 @@ class Counters extends React.Component {
 
     }
 
-    getFormItemNameClass() {
-        if (this.state.itemNameError == true) {
-            return "invalid-tooltip";
+    validateItem = () => {
+        if (this.state.itemName.length < 2) {
+            Swal.fire(
+                'Error!',
+                'Item name is required',
+                'warning'
+            )
+
+        }
+        else if (this.state.itemId.length < 1) {
+            Swal.fire(
+                'Error!',
+                'Item id is required',
+                'warning'
+            )
         }
         else {
-            return "valid-tooltip";
-
+            let itemData = { itemName: this.state.itemName, itemId: this.state.itemId };
+            this.setState({ itemName: '', itemId: '' });
+            this.props.onAddItem(itemData)
         }
-    }
 
-    getFormItemIdClass() {
-        if (this.state.itemIdError == true) {
-            return "invalid-tooltip";
-        }
-        else {
-            return "valid-tooltip";
-
-        }
     }
 
     render() {
@@ -76,8 +62,8 @@ class Counters extends React.Component {
                     <div className="card-header">
                         <div className="row">
                             <div className="col-md-12">
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3 form-group">
+                                <div className="form-row">
+                                    <div className="col-md-6 mb-3 form-group">
                                         <input
                                             type="text"
                                             name="itemName"
@@ -89,7 +75,7 @@ class Counters extends React.Component {
                                             Item name is required!
                                         </span>
                                     </div>
-                                    <div class="col-md-6 mb-3 form-group">
+                                    <div className="col-md-6 mb-3 form-group">
                                         <input
                                             type="number"
                                             name="itemId"
@@ -112,7 +98,7 @@ class Counters extends React.Component {
                                 </button>
                                 <button
                                     className="btn btn-info btn-sm m-3 float-right"
-                                    onClick={() => this.props.onAddItem({ itemName: this.state.itemName, itemId: this.state.itemId })}>
+                                    onClick={this.validateItem}>
                                     Add item
                                 </button>
                             </div>
@@ -122,7 +108,7 @@ class Counters extends React.Component {
                     <div className="card-body">
                         <ul className="list-group list-group-flush">
                             {this.props.counters.map(counter => (
-                                <li className="list-group-item">
+                                <li className="list-group-item" key={counter.id}>
                                     <Counter
                                         key={counter.id}
                                         counter={counter}
@@ -133,6 +119,7 @@ class Counters extends React.Component {
                                 </li>
                             ))}
                         </ul>
+                        {this.props.counters.length == 0 && <p className="text-center">Shopping list empty</p>}
                     </div>
                 </div>
             </div>
