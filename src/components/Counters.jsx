@@ -11,27 +11,58 @@ class Counters extends React.Component {
         //with props child id  <h>Count {counter.id}</h>
         //child prop is very useful when youre passing complex elememnt like dialogbox
         return (
-            <div className="card m-3" style={{ width: "20rem" }}>
-                <div className="card-header">
-                    <button
-                        className="btn btn-primary btn-sm m-3"
-                        onClick={this.props.onReset}>
-                        Reset
-                    </button>
+            <div className="row">
+                <div className="card m-3 col-md-5 ml-auto mr-auto">
+                    <div className="card-header">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3 form-group">
+                                        <input type="text" class="form-control is-valid" placeholder="Item name" />
+                                        <span class="valid-tooltip">
+                                            Looks good!
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6 mb-3 form-group is-invalid">
+                                        <input type="text" class="form-control is-invalid" placeholder="Item id" />
+                                        <span class="invalid-tooltip">
+                                            Looks good!
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="col-md-12">
+                                <button
+                                    className="btn btn-primary btn-sm m-3 float-left"
+                                    onClick={this.props.onReset}>
+                                    Reset
+                                </button>
+                                <button
+                                    className="btn btn-info btn-sm m-3 float-right"
+                                    onClick={this.props.onAddItem}>
+                                    Add item
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="card-body">
+                        <ul className="list-group list-group-flush">
+                            {this.props.counters.map(counter => (
+                                <li className="list-group-item">
+                                    <Counter
+                                        key={counter.id}
+                                        counter={counter}
+                                        onDelete={this.props.onDelete}
+                                        onIncrement={this.props.onIncrement}>
+                                        <h4 className="float-left">Item {counter.id} </h4>
+                                    </Counter>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-                <ul className="list-group list-group-flush">
-                    {this.props.counters.map(counter => (
-                        <li className="list-group-item">
-                            <Counter
-                                key={counter.id}
-                                counter={counter}
-                                onDelete={this.props.onDelete}
-                                onIncrement={this.props.onIncrement}>
-                                <h4 className="text-center">Item {counter.id} </h4>
-                            </Counter>
-                        </li>
-                    ))}
-                </ul>
             </div>
         );
     }

@@ -5,7 +5,7 @@ To run the project directory, you can run:
 ##### With some tuorials
 1. Listing items in react
 2. State management
-3. Componnts
+3. Components
 
 ###### You can add increment items in the shopping list and delete them enjoy
 

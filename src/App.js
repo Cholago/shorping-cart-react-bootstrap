@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Listing from './components/Listing'  //listing arrays objects
 import Statemanegment from './components/Statemanegment' //managing states
 import Counterspersingprops from './components/CountersPersingProps' //Persing props data and props children
+import AddItemToArray from './components/AddItemToArray'
 import Counters from './components/Counters'
 
 
@@ -44,6 +45,19 @@ class App extends React.Component {
     this.setState({ counters });
   }
 
+  //adding an item to the list
+  handleAdd = () => {
+    console.log("Item added");
+    this.setState(state => {
+      const counters = state.counters.concat({ id: 7, value: 20 });
+      return {
+        counters
+      };
+    });
+    console.log(this.state.counters);
+
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -54,6 +68,7 @@ class App extends React.Component {
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
+            onAddItem={this.handleAdd}
           />
         </main>
       </React.Fragment>
