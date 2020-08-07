@@ -6,7 +6,6 @@ import Statemanegment from './components/Statemanegment' //managing states
 import Counterspersingprops from './components/CountersPersingProps' //Persing props data and props children
 import AddItemToArray from './components/AddItemToArray'
 import Counters from './components/Counters'
-import Swal from 'sweetalert2'
 
 import './App.css';
 
@@ -15,10 +14,6 @@ class App extends React.Component {
     counters: [
       { id: 1, itemName: 'Bread', value: 0 },
       { id: 2, itemName: 'Honey', value: 0 },
-      { id: 3, itemName: 'Eggs', value: 0 },
-      { id: 4, itemName: 'Meat', value: 0 },
-      { id: 5, itemName: 'Pizaa', value: 0 },
-      { id: 6, itemName: 'Cake', value: 0 }
     ]
   }
 
@@ -37,6 +32,19 @@ class App extends React.Component {
     this.setState({ counters });
   }
 
+  handleDecrement = counter => {
+    //only decrement if value is not equal to zerro
+    if (!counter.value == 0) {
+      const counters = [...this.state.counters];
+      const index = counters.indexOf(counter);
+      counters[index] = { ...counter };
+      counters[index].value--;
+      this.setState({ counters });
+
+    }
+
+  }
+
   handleReset = () => {
     const counters = this.state.counters.map(c => {
       c.value = 0;
@@ -47,30 +55,14 @@ class App extends React.Component {
 
   //adding an item to the list
   handleAdd = (itemData) => {
-    if (itemData.itemName.length < 2) {
-      Swal.fire(
-        'Error!',
-        'Item name is required',
-        'warning'
-      )
 
-    }
-    else if (itemData.itemId.length < 1) {
-      Swal.fire(
-        'Error!',
-        'Item id is required',
-        'warning'
-      )
-    }
-    else {
-      this.setState(state => {
-        const counters = state.counters.concat({ id: itemData.itemId, itemName: itemData.itemName, value: 0 });
-        return {
-          counters
-        };
-      });
+    this.setState(state => {
+      const counters = state.counters.concat({ id: itemData.itemId, itemName: itemData.itemName, value: 0 });
+      return {
+        counters
+      };
+    });
 
-    }
     console.log(itemData);
 
   }
@@ -84,6 +76,7 @@ class App extends React.Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
             onAddItem={this.handleAdd}
           />

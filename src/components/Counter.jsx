@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+
 class Counter extends React.Component {
     state = {
         value: this.props.counter.value
@@ -16,8 +19,8 @@ class Counter extends React.Component {
                     <span className={this.getBadgeClass()}>{this.formCount()}</span>
                 </div>
                 <div className="col-md-12">
-                    <button className="btn btn-secondary btn-sm m-1" onClick={() => this.props.onIncrement(this.props.counter)}>Increment</button>
-                    <button className="btn btn-primary btn-sm m-1" onClick={() => this.props.onIncrement(this.props.counter)}>Decrement</button>
+                    <button className="btn btn-secondary btn-sm m-1" onClick={() => this.props.onIncrement(this.props.counter)}><FontAwesomeIcon icon={faPlus} /></button>
+                    <button className="btn btn-warning btn-sm m-1" onClick={() => this.props.onDecrement(this.props.counter)}><FontAwesomeIcon icon={faMinus} /></button>
                     <button className="btn btn-danger btn-sm float-right m-1" onClick={() => this.props.onDelete(this.props.counter.id)}>Delete</button>
                 </div>
             </div>

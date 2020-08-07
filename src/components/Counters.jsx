@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from './Counter'
 import Swal from 'sweetalert2'
 
+
 //rendering all counters from Counter components
 class Counters extends React.Component {
     //set counter id and value
@@ -9,7 +10,6 @@ class Counters extends React.Component {
     state = {
         itemName: '',
         itemId: '',
-
     };
 
     onValueChange = (event) => {
@@ -97,7 +97,7 @@ class Counters extends React.Component {
                                     Reset
                                 </button>
                                 <button
-                                    className="btn btn-info btn-sm m-3 float-right"
+                                    className="btn btn-secondary btn-sm m-3 float-right"
                                     onClick={this.validateItem}>
                                     Add item
                                 </button>
@@ -113,7 +113,8 @@ class Counters extends React.Component {
                                         key={counter.id}
                                         counter={counter}
                                         onDelete={this.props.onDelete}
-                                        onIncrement={this.props.onIncrement}>
+                                        onIncrement={this.props.onIncrement}
+                                        onDecrement={this.props.onDecrement}>
                                         <h4 className="float-left">{counter.itemName} </h4>
                                     </Counter>
                                 </li>
