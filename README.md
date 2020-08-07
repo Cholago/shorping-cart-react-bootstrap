@@ -1,4 +1,4 @@
-# Simple shopping Cart app using React js
+# Simple shopping Cart app using React js and bootstrap 4.5
 To run the project directory, you can run:
 `yarn start`
 
@@ -9,7 +9,8 @@ To run the project directory, you can run:
 
 ###### You can add increment items in the shopping list and delete them enjoy
 
-##### Screenshots
-![One](/screenshots/3.gif)
-![Tow](/screenshots/1.png)
-![Three](/screenshots/2.png)
+##### Screenshots gifs of the app
+![One](/screenshots/4.gif)
+![Tow](/screenshots/5.gif)
+
+>I love programming and knowing new things
