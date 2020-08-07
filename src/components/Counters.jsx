@@ -17,12 +17,53 @@ class Counters extends React.Component {
 
     onValueChange = (event) => {
         let { name, value } = event.target;
-
         switch (name) {
+            case 'itemName':
+                this.setState({ itemName: value, });
+                if (value == "") {
+                    this.setState({ itemNameMessage: "Item name is required", itemNameError: true });
+                }
+                else if (value.length < 2) {
+                    this.setState({ itemNameMessage: "Item name least 2 characters long", itemNameError: true });
+                }
+                else {
+                    this.setState({ itemNameMessage: false, itemNameError: false });
+                }
+                break;
+            case 'itemId':
+                this.setState({ itemId: value });
+                if (value == "") {
+                    this.setState({ itemIdMessage: "Item id is required.", itemIdError: true });
+                }
+                else {
+                    this.setState({ itemIdMessage: false, itemIdError: false });
+                }
+                break;
             default:
                 break;
         }
+        console.log(this.state);
 
+    }
+
+    getFormItemNameClass() {
+        if (this.state.itemNameError == true) {
+            return "invalid-tooltip";
+        }
+        else {
+            return "valid-tooltip";
+
+        }
+    }
+
+    getFormItemIdClass() {
+        if (this.state.itemIdError == true) {
+            return "invalid-tooltip";
+        }
+        else {
+            return "valid-tooltip";
+
+        }
     }
 
     render() {
@@ -42,21 +83,21 @@ class Counters extends React.Component {
                                             name="itemName"
                                             value={this.state.itemName}
                                             onChange={this.onValueChange}
-                                            class="form-control is-valid"
+                                            className="form-control"
                                             placeholder="Item name" />
-                                        <span class="valid-tooltip">
+                                        <span className="valid-tooltip">
                                             Item name is required!
                                         </span>
                                     </div>
-                                    <div class="col-md-6 mb-3 form-group is-invalid">
+                                    <div class="col-md-6 mb-3 form-group">
                                         <input
                                             type="number"
                                             name="itemId"
                                             value={this.state.itemId}
                                             onChange={this.onValueChange}
-                                            class="form-control is-invalid"
+                                            className="form-control"
                                             placeholder="Item id" />
-                                        <span class="invalid-tooltip">
+                                        <span className="invalid-tooltip">
                                             Item id is required!
                                         </span>
                                     </div>
@@ -65,13 +106,13 @@ class Counters extends React.Component {
                             </div>
                             <div className="col-md-12">
                                 <button
-                                    className="btn btn-primary btn-sm m-3 float-left"
+                                    className="btn btn-warning btn-sm m-3 float-left"
                                     onClick={this.props.onReset}>
                                     Reset
                                 </button>
                                 <button
                                     className="btn btn-info btn-sm m-3 float-right"
-                                    onClick={this.props.onAddItem}>
+                                    onClick={() => this.props.onAddItem({ itemName: this.state.itemName, itemId: this.state.itemId })}>
                                     Add item
                                 </button>
                             </div>
@@ -87,7 +128,7 @@ class Counters extends React.Component {
                                         counter={counter}
                                         onDelete={this.props.onDelete}
                                         onIncrement={this.props.onIncrement}>
-                                        <h4 className="float-left">Item {counter.id} </h4>
+                                        <h4 className="float-left">{counter.itemName} </h4>
                                     </Counter>
                                 </li>
                             ))}

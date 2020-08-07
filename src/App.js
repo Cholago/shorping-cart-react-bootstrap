@@ -6,19 +6,19 @@ import Statemanegment from './components/Statemanegment' //managing states
 import Counterspersingprops from './components/CountersPersingProps' //Persing props data and props children
 import AddItemToArray from './components/AddItemToArray'
 import Counters from './components/Counters'
-
+import Swal from 'sweetalert2'
 
 import './App.css';
 
 class App extends React.Component {
   state = {
     counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-      { id: 5, value: 0 },
-      { id: 6, value: 0 }
+      { id: 1, itemName: 'Bread', value: 0 },
+      { id: 2, itemName: 'Honey', value: 0 },
+      { id: 3, itemName: 'Eggs', value: 0 },
+      { id: 4, itemName: 'Meat', value: 0 },
+      { id: 5, itemName: 'Pizaa', value: 0 },
+      { id: 6, itemName: 'Cake', value: 0 }
     ]
   }
 
@@ -46,15 +46,26 @@ class App extends React.Component {
   }
 
   //adding an item to the list
-  handleAdd = () => {
-    console.log("Item added");
-    this.setState(state => {
-      const counters = state.counters.concat({ id: 7, value: 20 });
-      return {
-        counters
-      };
-    });
-    console.log(this.state.counters);
+  handleAdd = (itemData) => {
+    if (itemData.itemName.length < 2 || itemData.itemName.length < 1) {
+      Swal.fire(
+        'Error!',
+        'Item name or Item id is empty',
+        'warning'
+      )
+
+    }
+    else {
+      this.setState(state => {
+        const counters = state.counters.concat({ id: itemData.itemID, itemName: itemData.itemName, value: 0 });
+        return {
+          counters
+        };
+      });
+
+    }
+
+    console.log(itemData);
 
   }
 
