@@ -11,6 +11,4 @@ To run the project directory, you can run:
 
 ##### Screenshots gifs of the app
 ![One](/screenshots/4.gif)
-![Tow](/screenshots/5.gif)
-
 >I love programming and knowing new things
