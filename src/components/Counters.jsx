@@ -5,6 +5,25 @@ import Counter from './Counter'
 class Counters extends React.Component {
     //set counter id and value
 
+    state = {
+        itemName: '',
+        itemId: '',
+        itemNameError: false,
+        itemIdError: false,
+        itemNameMessage: '',
+        itemIdMessage: ''
+
+    };
+
+    onValueChange = (event) => {
+        let { name, value } = event.target;
+
+        switch (name) {
+            default:
+                break;
+        }
+
+    }
 
     render() {
         //persing props to a components
@@ -18,15 +37,27 @@ class Counters extends React.Component {
                             <div className="col-md-12">
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3 form-group">
-                                        <input type="text" class="form-control is-valid" placeholder="Item name" />
+                                        <input
+                                            type="text"
+                                            name="itemName"
+                                            value={this.state.itemName}
+                                            onChange={this.onValueChange}
+                                            class="form-control is-valid"
+                                            placeholder="Item name" />
                                         <span class="valid-tooltip">
-                                            Looks good!
+                                            Item name is required!
                                         </span>
                                     </div>
                                     <div class="col-md-6 mb-3 form-group is-invalid">
-                                        <input type="text" class="form-control is-invalid" placeholder="Item id" />
+                                        <input
+                                            type="number"
+                                            name="itemId"
+                                            value={this.state.itemId}
+                                            onChange={this.onValueChange}
+                                            class="form-control is-invalid"
+                                            placeholder="Item id" />
                                         <span class="invalid-tooltip">
-                                            Looks good!
+                                            Item id is required!
                                         </span>
                                     </div>
                                 </div>
